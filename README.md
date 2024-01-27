@@ -24,10 +24,10 @@ Batch process a directory of SVS files:
 python svstag.py <path-to-directory> [--barcode <barcode-type>] [--threads <num-threads>]
 ```
 Where:
-- <path-to-svs-file> is the path to the SVS file.
-- <path-to-directory> is the path to the directory containing SVS files.
-- <barcode-type> is the type of barcode to decode (datamatrix, QR, 1D). Default is datamatrix.
-- <num-threads> is the number of threads for parallel processing. Default is the number of CPU cores.
+- path-to-svs-file is the path to the SVS file.
+- path-to-directory is the path to the directory containing SVS files.
+- barcode-type is the type of barcode to decode (datamatrix, QR, 1D). Default is datamatrix.
+- num-threads is the number of threads for parallel processing. Default is the number of CPU cores.
 
 ### Installation
 Requires python 3.10+
