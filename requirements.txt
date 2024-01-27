@@ -1,0 +1,6 @@
+tifffile
+opencv-python
+numpy
+argparse
+pylibdmtx
+pyzbar
