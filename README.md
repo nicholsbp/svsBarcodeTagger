@@ -3,6 +3,8 @@
 ## Description
 This program is designed to process Aperio SVS slide image files. It extracts the barcode tile (either DataMatrix, QR, or 1D) from the label of an SVS file and renames the file by prefixing it with the decoded barcode data. Includes batch processing functionality with parallel processing.
 
+This project is not affiliated or endorsed by Aperio or any other organization and is provided "AS-IS" without warranties or conditions of any kind, either express or implied
+
 ## Features
 - Extracts barcodes (DataMatrix, QR, or 1D) from SVS file labels.
 - Renames SVS files with the barcode data as a prefix.
