@@ -33,7 +33,7 @@ Where:
 
 ### Installation
 Requires python 3.10+
-
+Requires Visual C++ Redist 2013 - https://www.microsoft.com/en-us/download/details.aspx?id=40784
 Install the required libraries using the following command:
 ```
 pip install -r requirements.txt
