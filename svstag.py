@@ -10,6 +10,7 @@ from pyzbar.pyzbar import decode as decode_barcode
 
 
 def extract_label_from_svs(svs_file_path):
+    # Extracts the label image from an SVS file, the index might be instrument specific
     with tifffile.TiffFile(svs_file_path) as tif:
         label = tif.series[2].asarray()
         return label
@@ -17,11 +18,13 @@ def extract_label_from_svs(svs_file_path):
 
 def decode_label(label_image, barcode_type):
     label_image_cv = cv2.cvtColor(label_image, cv2.COLOR_RGB2BGR)
+    # Choose decoding method based on barcode type
     if barcode_type == 'datamatrix':
         data = decode_datamatrix(label_image_cv)
     else:
         data = decode_barcode(label_image_cv)
-
+        
+    # Return barcode data if found
     for barcode in data:
         if barcode_type == 'datamatrix' or barcode.type in ['QRCODE', 'CODE128', 'EAN13', 'EAN8']:
             return barcode.data.decode('utf-8')
@@ -29,6 +32,7 @@ def decode_label(label_image, barcode_type):
 
 
 def rename_file(original_file_path, barcode_data):
+    # Renames file with barcode data, potential crash if barcode data contains banned symbol
     directory, filename = os.path.split(original_file_path)
     new_filename = f"{barcode_data}-{filename}"
     new_path = os.path.join(directory, new_filename)
@@ -53,6 +57,7 @@ def process_files_in_directory(directory, barcode_type, num_processes):
     with Pool(processes=num_processes) as pool:
         pool.map(process_file, [(file_path, barcode_type) for file_path in svs_files])
     end_time = time.time()
+    # Calculate and display processing time statistics
     total_time = end_time - start_time
     average_time = total_time / len(svs_files) if svs_files else 0
     print(f"Total time elapsed: {total_time:.2f} seconds")
